@@ -30,7 +30,7 @@ namespace Salot.Helpers
             var withdiv = webData.Split(div, StringSplitOptions.RemoveEmptyEntries);
 
             List<EmailMessage> processedMessages = new List<EmailMessage>();
-            //Dictionary<int, LunchMenuString> menustrings = new Dictionary<int, string>();
+        
             int dayCounter = 0;
             bool processAsOneList = false;
             foreach (string divString in withdiv)
@@ -51,7 +51,7 @@ namespace Salot.Helpers
                     againProcessedString = Remove(againProcessedString, "class", ">");
                     againProcessedString = againProcessedString.Replace("class", "");
                     againProcessedString = Regex.Replace(againProcessedString, @"(\s+|@|&|'|\(|\)|<|>|#|=|/|\\|\"")", "");
-                    //againProcessedString = String.Concat(againProcessedString.Where(c => !Char.IsWhiteSpace(c)));
+          
                     if (againProcessedString.Length > 5)
                     {
                         processedMessages.Add(new EmailMessage { Menu = againProcessedString, DayOfWeek = (DayOfWeek)dayCounter });

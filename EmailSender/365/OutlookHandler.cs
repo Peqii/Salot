@@ -10,6 +10,7 @@ using System.Timers;
 using Microsoft.Exchange.WebServices;
 using Microsoft.Exchange.WebServices.Data;
 using Salot.Helpers;
+using EmailSender._365;
 
 namespace EmailSender._365
 {
@@ -20,11 +21,11 @@ namespace EmailSender._365
         public void InitOutlookConnection()
         {
             
-            _timer = new Timer(100000 * 6 * 24); // every 10 minutes??
+            _timer = new Timer(100000 * 6 * 24); 
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
             _timer.Start();
 #if DEBUG
-            _timer = new Timer(10000); // every 10 minutes??
+            _timer = new Timer(10000); 
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
             _timer.Start();
 #endif

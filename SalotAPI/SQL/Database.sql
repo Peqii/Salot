@@ -1,7 +1,7 @@
 ﻿USE [master]
 GO
 
-/****** Object:  Database [SalotDB]    Script Date: 07/04/2022 22.40.35 ******/
+/****** Object:  Database [SalotDB]    Script Date: 10/04/2022 20.19.25 ******/
 CREATE DATABASE [SalotDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -124,4 +124,135 @@ GO
 ALTER DATABASE [SalotDB] SET  READ_WRITE 
 GO
 
+USE [SalotDB]
+GO
+/****** Object:  Table [dbo].[ExchangeInformation]    Script Date: 10/04/2022 20.20.26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ExchangeInformation](
+	[ID] [uniqueidentifier] NOT NULL,
+	[ClientId] [nvarchar](50) NULL,
+	[ClientSecret] [nvarchar](50) NULL,
+	[ServiceURL] [nvarchar](50) NULL,
+	[TenantID] [nvarchar](50) NULL,
+	[UserName] [nvarchar](50) NULL,
+	[Password] [nvarchar](50) NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedOn] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Human]    Script Date: 10/04/2022 20.20.26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Human](
+	[ID] [uniqueidentifier] NOT NULL,
+	[Name] [nchar](100) NOT NULL,
+	[Age] [int] NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedOn] [datetime] NOT NULL,
+	[IsRelative] [bit] NULL,
+	[Grandparent] [bit] NULL,
+	[Gender] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Pet]    Script Date: 10/04/2022 20.20.26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Pet](
+	[ID] [uniqueidentifier] NOT NULL,
+	[Name] [nchar](100) NOT NULL,
+	[Age] [int] NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedOn] [datetime] NOT NULL,
+	[Gender] [int] NULL,
+	[Species] [int] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[User]    Script Date: 10/04/2022 20.20.26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[ID] [uniqueidentifier] NOT NULL,
+	[Email] [nvarchar](100) NOT NULL,
+	[Password] [nvarchar](100) NOT NULL,
+	[Phone] [nvarchar](20) NULL,
+	[HumanID] [uniqueidentifier] NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedOn] [datetime] NOT NULL,
+	[Salt] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Websites]    Script Date: 10/04/2022 20.20.26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Websites](
+	[ID] [uniqueidentifier] NOT NULL,
+	[address] [nvarchar](100) NULL,
+	[lunch] [bit] NULL,
+	[UserId] [uniqueidentifier] NULL,
+	[CreatedOn] [datetime] NULL,
+	[ModifiedOn] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ExchangeInformation] ADD  CONSTRAINT [DF_ExchangeInformation_ID]  DEFAULT (newid()) FOR [ID]
+GO
+ALTER TABLE [dbo].[ExchangeInformation] ADD  CONSTRAINT [DF_ExchangeInformation_CreatedOn]  DEFAULT (getdate()) FOR [CreatedOn]
+GO
+ALTER TABLE [dbo].[ExchangeInformation] ADD  CONSTRAINT [DF_ExchangeInformation_ModifiedOn]  DEFAULT (getdate()) FOR [ModifiedOn]
+GO
+ALTER TABLE [dbo].[Human] ADD  CONSTRAINT [DF_Human_ID]  DEFAULT (newid()) FOR [ID]
+GO
+ALTER TABLE [dbo].[Human] ADD  CONSTRAINT [DF_Human_CreatedOn]  DEFAULT (getdate()) FOR [CreatedOn]
+GO
+ALTER TABLE [dbo].[Human] ADD  CONSTRAINT [DF_Human_ModifiedOn]  DEFAULT (getdate()) FOR [ModifiedOn]
+GO
+ALTER TABLE [dbo].[Pet] ADD  CONSTRAINT [DF_PET_ID]  DEFAULT (newid()) FOR [ID]
+GO
+ALTER TABLE [dbo].[Pet] ADD  CONSTRAINT [DF_PET_CreatedOn]  DEFAULT (getdate()) FOR [CreatedOn]
+GO
+ALTER TABLE [dbo].[Pet] ADD  CONSTRAINT [DF_PET_ModifiedOn]  DEFAULT (getdate()) FOR [ModifiedOn]
+GO
+ALTER TABLE [dbo].[User] ADD  CONSTRAINT [DF_User_ID]  DEFAULT (newid()) FOR [ID]
+GO
+ALTER TABLE [dbo].[User] ADD  CONSTRAINT [DF_User_CreatedOn]  DEFAULT (getdate()) FOR [CreatedOn]
+GO
+ALTER TABLE [dbo].[User] ADD  CONSTRAINT [DF_User_ModifiedOn]  DEFAULT (getdate()) FOR [ModifiedOn]
+GO
+ALTER TABLE [dbo].[Websites] ADD  CONSTRAINT [DF_Websites_ID]  DEFAULT (newid()) FOR [ID]
+GO
+ALTER TABLE [dbo].[Websites] ADD  CONSTRAINT [DF_Website_CreatedOn]  DEFAULT (getdate()) FOR [CreatedOn]
+GO
+ALTER TABLE [dbo].[Websites] ADD  CONSTRAINT [DF_Website_ModifiedOn]  DEFAULT (getdate()) FOR [ModifiedOn]
+GO
+ALTER TABLE [dbo].[Websites]  WITH CHECK ADD  CONSTRAINT [WebsiteUserIdConstraint] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([ID])
+GO
+ALTER TABLE [dbo].[Websites] CHECK CONSTRAINT [WebsiteUserIdConstraint]
+GO
 

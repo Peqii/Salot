@@ -35,13 +35,13 @@ namespace SalotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("GetWebsites")]
-        [HttpPost]
-        public ActionResult GetWebsitesWithUserId(Salot.Data.User apiUser)
+        [Route("GetUserWebsites/{id}")]
+        [HttpGet]
+        public ActionResult GetWebsitesWithUserId(Guid userGuid)
         {
             try
             {
-                var websites = _db.Websites.Where(w => w.UserId == apiUser.ID).ToList();
+                var websites = _db.Websites.Where(w => w.UserId == userGuid).ToList();
                 List<Salot.Data.Website> websiteModels = new List<Salot.Data.Website>();
                 foreach (Website website in websites)
                     websiteModels.Add(ModelCreator.CreateModelWebsite(website));
@@ -53,7 +53,7 @@ namespace SalotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("PostWebsite")]
+        [Route("Insert")]
         [HttpPost]
         public ActionResult InsertWebsite(Salot.Data.Website website)
         {

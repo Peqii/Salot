@@ -10,9 +10,9 @@ namespace Salot.Data
     public class NonOrgan : INonOrgans
     {
         public Guid ID { get; set; }
-        [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         public DateTime CreatedOn { get; set; }
-        [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         public DateTime ModifiedOn { get; set; }
     }
 }

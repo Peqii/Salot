@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using EmailSender._365;
 using Salot.Helpers;
+using Salot.Data;
 
 namespace EmailSender
 {

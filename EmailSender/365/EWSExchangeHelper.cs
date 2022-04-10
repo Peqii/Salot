@@ -33,11 +33,11 @@ namespace EmailSender._365
 
         }
 
-        internal void SendDailyEmailsForUser(Guid recipient, List<Salot.Data.WebsiteData> menusForToday)
+        internal void SendDailyEmailsForUser(Guid recipientGuid, List<Salot.Data.WebsiteData> menusForToday)
         {
-            if(recipient != Guid.Empty)
+            if(recipientGuid != Guid.Empty)
             {
-                string recipientEmail = SQLHandler.GetUserEmail(recipient);
+                string recipientEmail = SQLHandler.GetUserEmail(recipientGuid);
                 if(!string.IsNullOrEmpty(recipientEmail))
                 {
                     string body = CreateEmailBodyFromList(menusForToday);

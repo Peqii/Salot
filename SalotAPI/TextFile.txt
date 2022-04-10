@@ -1,21 +1,21 @@
 ﻿TODO Lista
 
 Pakolliset:
+- API Management (Authentikaatiot, API keyt yms)
 - Mieti mitä arkkitehtuuria tää noudattaa - tee kaaviot ja muokkaa koodi sen mukaan
-- Websivulle kirjautuneen userin tokenikäsittely
+- Websivulle kirjautuneen userin auth ja refresh tokenikäsittely
+- Websivulle local storage
 - Parempi parse lounaslistojen rakentamiseen ja lisää "älyä" muutenkin
 - Yleinen siistiminen
-- Käyttöliittymä hallinnointiin
-
 
 Kiva olisi saada:
 - Vielä laajempi virheenkäsittely API:in, SQL injection suojat yms
-- Docker
+- Docker image
 - Oikeasti kiva käyttöliittymä
-- Parempi monitasoinen logitus
+- Parempi monitasoinen logitus, 3. osapuolen softa?
 - OAuth 2.0
-- Authentikaatio API:iin
-- Kaikki APIN:n endpointit palauttaa arrayta -> Vastaanottajan ei tarvi miettiä miten käsittelee vastaukset
 
+###
+- Swagger UI:n käyttö?
 
 

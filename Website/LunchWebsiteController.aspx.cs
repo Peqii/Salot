@@ -13,8 +13,8 @@ namespace Website
     public partial class LunchWebsiteController : System.Web.UI.Page
     {
         WebsiteApiCalls websiteHelper = new WebsiteApiCalls();
-
-        //TODO: sessioon ettei tarvi aina ladata uusiks
+        const string testUserGuid = "6B60C9B2-8053-4FB1-B0EE-BD4BF295321A";
+        //TODO: Localstorageen ettei tarvi aina ladata uusiks
         List<Salot.Data.Website> websiteList = new List<Salot.Data.Website>();
         protected async void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +23,7 @@ namespace Website
                
                 try
                 {
-                    websiteList = await websiteHelper.GetWebsitesForUsers(Guid.Parse("EEC8B610-FD32-4075-870E-656F808405E3"));
+                    websiteList = await websiteHelper.GetWebsitesForUsers(Guid.Parse(testUserGuid));
                 }
                 catch (Exception ex)
                 {
@@ -60,7 +60,7 @@ namespace Website
         {
             try
             {
-                var website = websiteHelper.UnsubscribeFromWebsite(Guid.Parse(id));
+                var website = websiteHelper.Delete(Guid.Parse(id));
                 ErrorText.Text = "Deleted";
                 return true;
             }
@@ -74,7 +74,7 @@ namespace Website
         {
             try
             {
-                var webSites = await websiteHelper.InsertWebsiteForUser(Guid.Parse("EEC8B610-FD32-4075-870E-656F808405E3"), LunchWebsiteTextbox.Text);
+                var webSites = await websiteHelper.InsertWebsiteForUser(Guid.Parse(testUserGuid), LunchWebsiteTextbox.Text);
                 GridView1.DataSource = webSites;
                 GridView1.DataBind();
                 ErrorText.Text = "Added";
@@ -88,7 +88,7 @@ namespace Website
         protected async void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             GridViewRow row = GridView1.Rows[e.RowIndex];
-            websiteList = await websiteHelper.GetWebsitesForUsers(Guid.Parse("EEC8B610-FD32-4075-870E-656F808405E3"));
+            websiteList = await websiteHelper.GetWebsitesForUsers(Guid.Parse(testUserGuid));
             websiteList.Remove(websiteList.Where(w => w.ID == Guid.Parse((row.FindControl("ID") as TextBox).Text)).FirstOrDefault());
             GridView1.DataSource = websiteList;
             GridView1.DataBind();

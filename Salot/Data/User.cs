@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
 namespace Salot.Data
 {
     
@@ -18,9 +18,9 @@ namespace Salot.Data
         public string Password { get; set; }
         [JsonProperty("Phone")] 
         public string Phone { get; set; }
-        [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         public Guid? HumanID { get; set; }
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public string UserId { get; set; }
 
     }
