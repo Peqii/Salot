@@ -1,0 +1,21 @@
+﻿TODO Lista
+
+Pakolliset:
+- Mieti mitä arkkitehtuuria tää noudattaa - tee kaaviot ja muokkaa koodi sen mukaan
+- Websivulle kirjautuneen userin tokenikäsittely
+- Parempi parse lounaslistojen rakentamiseen ja lisää "älyä" muutenkin
+- Yleinen siistiminen
+- Käyttöliittymä hallinnointiin
+
+
+Kiva olisi saada:
+- Vielä laajempi virheenkäsittely API:in, SQL injection suojat yms
+- Docker
+- Oikeasti kiva käyttöliittymä
+- Parempi monitasoinen logitus
+- OAuth 2.0
+- Authentikaatio API:iin
+- Kaikki APIN:n endpointit palauttaa arrayta -> Vastaanottajan ei tarvi miettiä miten käsittelee vastaukset
+
+
+
