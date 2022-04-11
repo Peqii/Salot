@@ -43,7 +43,6 @@ namespace SalotAPI.Controllers
             try
             {
                 UserHelper helper = new UserHelper();
-
                 List<User> user = _db.Users.Where(w => w.Email == apiUser.Email).ToList();
                 if (user == null)
                 {
@@ -70,11 +69,10 @@ namespace SalotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("Insert")]
+        [Route("register")]
         [HttpPost]
         public ActionResult InsertUser(Salot.Data.User apiUser)
         {
-            List<User> users = new List<User>();
             try
             {
                 if (_db.Users.Any(w => w.Email == apiUser.Email))
@@ -90,12 +88,14 @@ namespace SalotAPI.Controllers
                     string pepper = _configuration.GetValue<string>("PepperForAPI");
                     TempHelper tempHelper = new TempHelper(pepper);
                     Tuple<string, string> userPassSalt = tempHelper.GenerateUserPassword(apiUser.Password);
+
                     user.Password = userPassSalt.Item1;
                     user.Salt = userPassSalt.Item2;
-                    users.Add(user);
+
                     _db.Users.Add(user);
                     _db.SaveChanges();
-                    return Ok(users);
+
+                    return Ok(user);
                 }
 
                 return BadRequest(argumentException.Message);
@@ -106,7 +106,7 @@ namespace SalotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("DeleteUser/{id}")]
+        [Route("Delete/{id}")]
         [HttpDelete]
         public ActionResult DeleteUser(Guid id)
         {

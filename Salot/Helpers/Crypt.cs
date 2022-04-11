@@ -12,7 +12,7 @@ namespace Salot.Helpers
         private readonly string _pepperForPassword;
         public Crypt(string pepperForPassword)
         {
-            _pepperForPassword = pepperForPassword; // TODO: laiska: rekisteriin, priima: Azure key vaulttiin
+            _pepperForPassword = pepperForPassword; // TODO: Azure key vaulttiin
         }
    
         public Tuple<string, string> GenerateUserPassword(string userPassword)

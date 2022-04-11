@@ -1190,7 +1190,6 @@ h6,
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
-  color:red;
 }
 h1 small,
 h2 small,
@@ -1675,7 +1674,6 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  color:red;
 }
 .col-xs-1,
 .col-xs-2,

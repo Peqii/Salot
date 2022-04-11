@@ -37,12 +37,6 @@ namespace Salot.Helpers
         }
         public bool ValidateInsertedCredentials(string email, string password, out ArgumentException argumentException)
         {
-            //if (!Regex.Match(password, "(?=^.{8,255}$)((?=.*d)(?=.*[A-Z])(?=.*[a-z])|(?=.*)(?=.*[^A-Za-z0-9ÄÖäö])(?=.*[a-z])|(?=.*[^A-Za-z0-9ÄÖäö])(?=.*[A-Z])(?=.*[a-z])|(?=.*)(?=.*[A-Z])(?=.*[^A-Za-z0-9ÄÖäö]))^.*").Success)
-            //{
-            //    argumentException = new ArgumentException("Inserted password has to contain at least one special character");
-            //    return false;
-            //}
-
             if (email == null || !Regex.Match(email, "(?=[^A-Za-z0-9ÄÖäö]|(^@)|(.))").Success || email.Length < 5)
             {
                 argumentException = new ArgumentException("Insert valid Email address");

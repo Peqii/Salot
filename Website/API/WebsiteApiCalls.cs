@@ -20,10 +20,8 @@ namespace Website.API
                     "https://localhost:44318/api/website/insert", website);
                 if (response.IsSuccessStatusCode)
                 {
-                    var user2 = await response.Content.ReadAsAsync<List<Salot.Data.Website>>();
-
-
-                    return user2;
+                    var returnWebsite = await response.Content.ReadAsAsync<List<Salot.Data.Website>>();
+                    return returnWebsite;
                 }
                 else
                 {

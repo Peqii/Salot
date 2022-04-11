@@ -13,6 +13,7 @@ namespace Website
     public partial class LunchWebsiteController : System.Web.UI.Page
     {
         WebsiteApiCalls websiteHelper = new WebsiteApiCalls();
+        // TODO: Sessionkäsittely
         const string testUserGuid = "6B60C9B2-8053-4FB1-B0EE-BD4BF295321A";
         //TODO: Localstorageen ettei tarvi aina ladata uusiks
         List<Salot.Data.Website> websiteList = new List<Salot.Data.Website>();
@@ -27,13 +28,12 @@ namespace Website
                 }
                 catch (Exception ex)
                 {
-                    ErrorText.Text = ex.Message;
+                    RegisterFailedError.Text = ex.Message;
                 }
 
                 GridView1.DataSource = websiteList;
                 GridView1.AutoGenerateColumns = false;
                 GridView1.DataBind();
-
             }
         }
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -50,7 +50,7 @@ namespace Website
                 }
                 catch(Exception ex)
                 {
-                    ErrorText.Text = string.Format("Deleting website failed: {0}", ex.Message);
+                    RegisterFailedError.Text = string.Format("Deleting website failed: {0}", ex.Message);
                 }
 
             }
@@ -61,12 +61,12 @@ namespace Website
             try
             {
                 var website = websiteHelper.Delete(Guid.Parse(id));
-                ErrorText.Text = "Deleted";
+                RegisterFailedError.Text = "Deleted";
                 return true;
             }
             catch (Exception ex)
             {
-                ErrorText.Text = ex.Message;
+                RegisterFailedError.Text = ex.Message;
                 return false;
             }
         }
@@ -77,11 +77,11 @@ namespace Website
                 var webSites = await websiteHelper.InsertWebsiteForUser(Guid.Parse(testUserGuid), LunchWebsiteTextbox.Text);
                 GridView1.DataSource = webSites;
                 GridView1.DataBind();
-                ErrorText.Text = "Added";
+                RegisterFailedError.Text = "Added";
             }
             catch (Exception ex)
             {
-                ErrorText.Text = ex.Message;
+                RegisterFailedError.Text = ex.Message;
             }
         }
 

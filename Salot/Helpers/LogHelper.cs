@@ -13,7 +13,7 @@ namespace Salot.Helpers
         {
             try
             {
-                string filePath = string.Format(folderLocation, fileName);
+                string filePath = string.Concat(folderLocation, fileName);
                 if (!Directory.Exists(folderLocation))
                     Directory.CreateDirectory(folderLocation);
 

@@ -20,28 +20,28 @@ namespace SalotAPI.Controllers
             _db = db;
             _configuration = configuration;
         }
-        [Route("Get")]
-        [HttpGet]
-        public ActionResult GetWebsites()
-        {
-            try 
-            {
-                var websites = _db.Websites.ToList();
-                return Ok(websites);
-            }
-            catch(Exception ex)
-            {
-                LogHelper.WriteToErrorLog(ex.Message, _configuration.GetValue<string>("LogFolder"), _configuration.GetValue<string>("LogFile"));
-                return BadRequest(ex.Message);
-            }
-        }
+        //[Route("Get")]
+        //[HttpGet]
+        //public ActionResult GetWebsites()
+        //{
+        //    try 
+        //    {
+        //        var websites = _db.Websites.ToList();
+        //        return Ok(websites);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        LogHelper.WriteToErrorLog(ex.Message, _configuration.GetValue<string>("LogFolder"), _configuration.GetValue<string>("LogFile"));
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
         [Route("GetUserWebsites/{id}")]
         [HttpGet]
-        public ActionResult GetWebsitesWithUserId(Guid userGuid)
+        public ActionResult GetWebsitesWithUserId(Guid id)
         {
             try
             {
-                var websites = _db.Websites.Where(w => w.UserId == userGuid).ToList();
+                var websites = _db.Websites.Where(w => w.UserId == id).ToList();
                 List<Salot.Data.Website> websiteModels = new List<Salot.Data.Website>();
                 foreach (Website website in websites)
                     websiteModels.Add(ModelCreator.CreateModelWebsite(website));
@@ -76,7 +76,7 @@ namespace SalotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("DeleteWebsite/{id}")]
+        [Route("Delete/{id}")]
         [HttpDelete]
         public ActionResult InsertWebsite(Guid id)
         {

@@ -14,12 +14,12 @@ namespace Website
 
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void LoginButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("login.aspx");
         }
 
-        protected void Button3_Click(object sender, EventArgs e)
+        protected void RegisterButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("register.aspx");
         }
